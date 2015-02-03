@@ -30,7 +30,7 @@ dependencies {
     compile 'net.hockeyapp.android:HockeySDK:3.5.+'
     compile 'com.googlecode.mp4parser:isoparser:1.0.+'
     compile 'com.android.support:recyclerview-v7:+'
-    compile project(':Android-SDK')
+    compile 'com.aniways:library:1.0'
 }
 
 android {
