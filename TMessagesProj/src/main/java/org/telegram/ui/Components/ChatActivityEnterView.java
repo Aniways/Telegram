@@ -198,14 +198,14 @@ public class ChatActivityEnterView implements NotificationCenter.NotificationCen
                         }
                         JSONObject images = object.getJSONObject("images");
                         JSONObject thumb = images.getJSONObject("downsized_still");
-                        JSONObject original = images.getJSONObject("fixed_height_downsampled");
+                        JSONObject original = images.getJSONObject("fixed_height");
                         MediaController.SearchImage bingImage = new MediaController.SearchImage();
                         bingImage.id = id;
                         bingImage.width = original.getInt("width");
                         bingImage.height = original.getInt("height");
                         bingImage.size = original.optInt("size");
                         if(bingImage.size == 0){
-                            bingImage.size = 220000;
+                            bingImage.size = data.size;
                         }
                         bingImage.imageUrl = original.getString("url");
                         bingImage.thumbUrl = thumb.getString("url");
