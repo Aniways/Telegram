@@ -363,7 +363,13 @@ public class MessageObject {
 
         if (message instanceof TLRPC.TL_message || message instanceof TLRPC.TL_messageForwarded_old2) {
             if (isMediaEmpty()) {
-                contentType = type = 0;
+                if (messageText.subSequence(0,2).equals("$$")){
+                    messageText = messageText.subSequence(2,messageText.length());
+                    contentType = type = 200;
+                }
+                else{
+                    contentType = type = 0;
+                }
             } else if (message.media instanceof TLRPC.TL_messageMediaPhoto) {
                 contentType = type = 1;
             } else if (message.media instanceof TLRPC.TL_messageMediaGeo || message.media instanceof TLRPC.TL_messageMediaVenue) {

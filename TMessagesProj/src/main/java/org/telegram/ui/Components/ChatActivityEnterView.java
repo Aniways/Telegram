@@ -211,23 +211,7 @@ public class ChatActivityEnterView extends FrameLayoutFixed implements Notificat
         layoutParams1.height = AndroidUtilities.dp(48);
         layoutParams1.gravity = Gravity.BOTTOM;
         emojiButton.setLayoutParams(layoutParams1);
-        /*
-        emojiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (showKeyboardOnEmojiButton) {
-                    setKeyboardTransitionState(1);
-                    int selection = messageEditText.getSelectionStart();
-                    MotionEvent event = MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0);
-                    messageEditText.onTouchEvent(event);
-                    event.recycle();
-                    messageEditText.setSelection(selection);
-                } else {
-                    showEmojiPopup(emojiPopup == null || !emojiPopup.isShowing(), true);
-                }
-            }
-        });
-        */
+
 
         messageEditText = new AniwaysEditText(context);
         Aniways.makeButtonAniwaysEmoticonsButton(emojiButton, (ViewGroup) sizeNotifierRelativeLayout, (AniwaysEditText) messageEditText, null, true);
@@ -250,7 +234,7 @@ public class ChatActivityEnterView extends FrameLayoutFixed implements Notificat
                     bingImage.width = original.getInt("width");
                     bingImage.height = original.getInt("height");
                     bingImage.size = original.optInt("size");
-                    if(bingImage.size == 0){
+                    if (bingImage.size == 0) {
                         bingImage.size = data.size;
                     }
                     bingImage.imageUrl = original.getString("url");
@@ -267,6 +251,18 @@ public class ChatActivityEnterView extends FrameLayoutFixed implements Notificat
 
             }
         }, true);
+
+        emojiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (messageEditText != null) {
+                    messageEditText.setText("https://damp-retreat-4028.herokuapp.com/games/tic-tac-toe/" + UserConfig.getClientUserId());
+                    sendMessage();
+                }
+            }
+        });
+
+
         messageEditText.setHint(LocaleController.getString("TypeMessage", R.string.TypeMessage));
         messageEditText.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         messageEditText.setInputType(messageEditText.getInputType() | EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES | EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);

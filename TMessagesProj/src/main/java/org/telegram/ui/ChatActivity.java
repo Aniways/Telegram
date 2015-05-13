@@ -39,6 +39,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -4605,6 +4606,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             } else if (viewType == 6) {
                 LayoutInflater li = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = li.inflate(R.layout.chat_unread_layout, parent, false);
+            }
+            else if (viewType == 200){
+                final WebView webView = new WebView(mContext);
+                webView.loadUrl();
+                view = webView;
+
             }
 
             if (view instanceof ChatBaseCell) {
